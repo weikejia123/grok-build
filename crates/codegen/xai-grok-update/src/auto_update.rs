@@ -446,14 +446,21 @@ impl BackgroundUpdateCheck {
 
 /// Check for available updates without blocking the TUI startup.
 ///
-/// Sets [`BackgroundUpdateCheck::update`] when the running binary is older
-/// than the channel pointer. If `auto_update` is enabled **and the on-disk
-/// install is also behind the pointer**, kicks off a non-blocking download
+/// Local-first cut: update checks are opt-in. Unless `[cli] auto_update = true`
+/// is set explicitly, this returns immediately — no installer healing, no
+/// version fetch, so an offline machine sees zero update traffic.
+///
+/// When enabled, sets [`BackgroundUpdateCheck::update`] when the running binary
+/// is older than the channel pointer, and kicks off a non-blocking download
 /// (spawns `grok update` as a detached child process) so the new binary is
-/// ready when the user quits and relaunches. When another process (an earlier
-/// TUI, the leader's hourly checker) already put the target version on disk,
-/// no download is started — only the restart hint is surfaced.
+/// ready when the user quits and relaunches.
 pub async fn check_update_background(update_config: &UpdateConfig) -> BackgroundUpdateCheck {
+    // Local-first cut: default (None) and explicit `false` both skip; only an
+    // explicit `auto_update = true` arms the background check.
+    if config::load_config().await.cli.auto_update != Some(true) {
+        return BackgroundUpdateCheck::none();
+    }
+
     let Some(installer) = get_installer().await else {
         return BackgroundUpdateCheck::none();
     };
@@ -461,11 +468,6 @@ pub async fn check_update_background(update_config: &UpdateConfig) -> Background
     heal_managed_install(installer).await;
 
     if is_version_cache_fresh().await {
-        return BackgroundUpdateCheck::none();
-    }
-
-    let current_config = config::load_config().await;
-    if current_config.cli.auto_update == Some(false) {
         return BackgroundUpdateCheck::none();
     }
 

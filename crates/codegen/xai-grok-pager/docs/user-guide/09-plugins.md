@@ -80,10 +80,12 @@ Use these keys in the Plugins tab:
 | `r` | Reload all plugins |
 | `a` | Add a plugin from `owner/repo`, a URL, or a local path |
 | `Space` | Enable or disable the selected plugin |
-| `x` | Uninstall the selected plugin |
+| `x` | Uninstall the selected plugin (asks for confirmation) |
 | `f` | Filter by status (all, enabled, or disabled) |
 | `Enter` | Expand or collapse plugin details |
 | `/` | Search plugins by name |
+
+Uninstall asks for confirmation: press lowercase `y` to confirm, or any other key (including `Esc`) to cancel.
 
 ### Marketplace tab
 
@@ -94,9 +96,9 @@ Use these keys in the Marketplace tab:
 | Key | Action |
 |-----|--------|
 | `i` | Install the selected plugin |
-| `d` | Uninstall the selected plugin |
+| `d` | Uninstall the selected plugin (asks for confirmation) |
 | `a` | Add a marketplace source |
-| `x` | Remove the selected source and its plugins |
+| `x` | Remove the selected source and all its plugins (asks for confirmation) |
 | `r` | Refresh marketplace sources |
 | `u` | Update the selected marketplace plugin |
 | `Enter` | Expand or collapse a source or plugin |
@@ -132,10 +134,34 @@ The `<source>` argument accepts:
 
 - `user/repo` -- GitHub shorthand
 - `user/repo@v1.0` -- pinned to a ref
+- `user/repo@<commit-sha>` -- pinned to an exact commit (verified after fetch)
 - `user/repo#subdir` -- subdirectory within the repo
 - `https://github.com/user/repo.git` -- full URL
 - `git@github.com:user/repo.git` -- SSH
 - `./local-dir` or `/absolute/path` -- local directory
+
+### Requiring commit pins (`require_sha`)
+
+Remote plugins are not cryptographically signed: an install that tracks a
+branch or tag runs whatever that ref points at tomorrow. Operators can require
+every remote install and update to pin a full commit sha (40- or 64-hex,
+verified against the fetched checkout):
+
+```toml
+# config.toml
+[marketplace]
+require_sha = true
+```
+
+or `GROK_MARKETPLACE_REQUIRE_SHA=1`. Both are tighten-only: either one enables
+the policy and neither can switch it back off. With the policy on, unpinned
+remote installs, marketplace installs without a published `sha`, and updates of
+branch-tracking installs are refused.
+
+Scope: the policy covers everything fetched from a remote git URL at install or
+update time. Plugins vendored inside a marketplace source itself are copied
+from that source's synced checkout and are not covered — pin your marketplace
+source's content by publishing `sha` entries in `plugin-index.json`.
 
 ### Marketplace commands
 
@@ -270,4 +296,4 @@ These keys work across every tab in the modal:
 | `/` | Search the current tab by name |
 | `Esc` | Clear the search, or close the modal |
 
-Some actions, such as uninstalling a plugin, ask for confirmation. Press `y` to confirm or `Esc` to cancel.
+Destructive remove and uninstall actions in the modal ask for confirmation. Press lowercase `y` to confirm, or any other key (including `Esc`) to cancel.

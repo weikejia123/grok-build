@@ -185,7 +185,7 @@ From the modal you can:
 - Expand a server to view the tools it provides
 - Refresh the list with `r` after you edit `config.toml`
 - Authenticate an OAuth server with `i`
-- Add a server with `a`, or remove one with `x`
+- Add a server with `a`, or remove a local server with `x` (the modal asks for confirmation; press lowercase `y` to remove, or any other key to cancel)
 
 ### Tool Discovery
 
@@ -225,7 +225,7 @@ Use the `url` form for hosted MCP servers and the `command` / `args` form for lo
 
 ### Native HTTP (hosted services)
 
-You must authenticate OAuth-based MCP servers before you can use them. Grok stores the resulting tokens under `~/.grok/mcp_credentials.json`. After you edit `config.toml`, press `r` in the `/mcps` modal to refresh the server list.
+You must authenticate OAuth-based MCP servers before you can use them. Grok stores the resulting tokens under `~/.grok/mcp_credentials.json` as local plaintext with owner-only file permissions (`0600` on Unix). Prefer full-disk encryption on the host. After you edit `config.toml`, press `r` in the `/mcps` modal to refresh the server list.
 
 ```toml
 [mcp_servers.linear]

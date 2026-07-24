@@ -197,7 +197,12 @@ resolve_target() {
       echo "$existing"
       return
     fi
-    log_warn "已有路径 $existing_dir 不可写，尝试 ~/.local/bin"
+    # 不可写但有 sudoers 免密，仍用此路径并通过 sudo 安装
+    if sudo -n true 2>/dev/null; then
+      echo "$existing"
+      return
+    fi
+    log_warn "已有路径 $existing_dir 不可写且无 sudo，尝试 ~/.local/bin"
   fi
 
   local fallback="$HOME/.local/bin/grok"

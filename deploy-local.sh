@@ -189,15 +189,20 @@ resolve_target() {
   fi
 
   if which grok &>/dev/null; then
-    which grok
-    return
+    local existing
+    existing="$(which grok)"
+    local existing_dir
+    existing_dir="$(dirname "$existing")"
+    if [ -w "$existing_dir" ]; then
+      echo "$existing"
+      return
+    fi
+    log_warn "已有路径 $existing_dir 不可写，尝试 ~/.local/bin"
   fi
 
-  if [ -d "/usr/local/bin" ] && [ -w "/usr/local/bin" ]; then
-    echo "/usr/local/bin/grok"
-  else
-    echo "$HOME/.local/bin/grok"
-  fi
+  local fallback="$HOME/.local/bin/grok"
+  mkdir -p "$HOME/.local/bin"
+  echo "$fallback"
 }
 
 # ─── 验证部署 ───
@@ -295,7 +300,11 @@ main() {
     esac
   done
 
-  set -- "${args[@]}"
+  if [ ${#args[@]} -gt 0 ]; then
+    set -- "${args[@]}"
+  else
+    set --
+  fi
   local cmd="${1:-full}"
 
   case "$cmd" in

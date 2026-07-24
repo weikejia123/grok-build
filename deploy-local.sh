@@ -121,7 +121,7 @@ check_prereqs() {
 # ─── 构建 ───
 do_build() {
   local profile="${1:-release}"
-  log_step "构建 Grok Build（$profile）"
+  log_step "Build Grok ($profile)"
   local start
   start="$(date +%s)"
 
@@ -139,7 +139,7 @@ do_build() {
   if [ -f "$bin_path" ]; then
     local ver
     ver="$("$bin_path" --version 2>/dev/null || echo 'N/A')"
-    log_info "产物验证: $bin_path（$ver）"
+    log_info "Binary: $bin_path ($ver)"
     ls -lh "$bin_path" | awk '{print "      size:", $5}'
   else
     log_error "构建失败: $bin_path 未生成"

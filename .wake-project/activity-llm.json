@@ -1,0 +1,187 @@
+{
+  "schema_version": 2,
+  "project_id": "019f8451-bbdc-7701-9eec-f9f3b4318a44",
+  "based_on": {
+    "project_id": "019f8451-bbdc-7701-9eec-f9f3b4318a44",
+    "scan_id": "019f8451-be9a-7c80-8071-1eced9d38ab0",
+    "head": "49a0f3d"
+  },
+  "analyzed_at": "2026-07-22T18:47:15+0800",
+  "upstream_sync": {
+    "remote": "upstream",
+    "upstream_default_branch": "main",
+    "ahead_count": 26,
+    "behind_count": 0,
+    "upstream_latest": {
+      "sha": "7cfcb20",
+      "at": "2026-07-18",
+      "message": "Synced from monorepo"
+    },
+    "note": "behind 基于最近一次 fetch 的 ref，非实时"
+  },
+  "our_commits": [
+    {
+      "sha": "a225e76",
+      "at": "2026-07-19",
+      "author": "weikejia",
+      "message": "[feat] release: macOS arm64 发布目录（build-release.sh 打包 + install.sh 目标机安装 + 部署 README；dist/ 加入 gitignore）",
+      "files_changed": 4,
+      "scope": "my-scripts"
+    },
+    {
+      "sha": "11c5020",
+      "at": "2026-07-19",
+      "author": "weikejia",
+      "message": "[feat] version: 版本号追加 -wkj 后缀（xai-grok-version + 两个 build.rs；GROK_VERSION 仍可整体覆盖）",
+      "files_changed": 4,
+      "scope": "crates"
+    },
+    {
+      "sha": "de6548c",
+      "at": "2026-07-19",
+      "author": "weikejia",
+      "message": "Merge remote-tracking branch 'upstream/main' into wkj-20260717-v1",
+      "files_changed": 4,
+      "scope": "crates"
+    },
+    {
+      "sha": "0368e73",
+      "at": "2026-07-18",
+      "author": "weikejia",
+      "message": "[docs] 架构报告取证式重核修正 4 处 + disabled-features 勘误",
+      "files_changed": 2,
+      "scope": "my-docs"
+    },
+    {
+      "sha": "42316f7",
+      "at": "2026-07-18",
+      "author": "weikejia",
+      "message": "[docs] 架构报告同步 upstream 0.2.102 合并（~70 处行号重核、§7.4 上游同步要点；依赖数据经 cargo metadata 实测修正）",
+      "files_changed": 1,
+      "scope": "my-docs"
+    },
+    {
+      "sha": "93b0f8e",
+      "at": "2026-07-18",
+      "author": "weikejia",
+      "message": "[feat] scripts: start-dev.sh 启动前交给 cargo 判断新鲜度并显示二进制版本",
+      "files_changed": 1,
+      "scope": "my-scripts"
+    },
+    {
+      "sha": "f9fab64",
+      "at": "2026-07-18",
+      "author": "weikejia",
+      "message": "Merge upstream/main (98c3b24, v0.2.102) into wkj-20260717-v1",
+      "files_changed": 5,
+      "scope": "crates"
+    },
+    {
+      "sha": "ee71d0a",
+      "at": "2026-07-18",
+      "author": "weikejia",
+      "message": "[docs] add 架构分层与数据流深度分析（分层/crate依赖/mermaid时序图/二开作战地图）",
+      "files_changed": 1,
+      "scope": "my-docs"
+    },
+    {
+      "sha": "977e49f",
+      "at": "2026-07-18",
+      "author": "weikejia",
+      "message": "[docs] add config.toml 全参数示例（45 段/323 字段，逐字段以代码为准）",
+      "files_changed": 1,
+      "scope": "my-docs"
+    },
+    {
+      "sha": "2838272",
+      "at": "2026-07-17",
+      "author": "weikejia",
+      "message": "[docs] add LLM 配置指南（DeepSeek/OpenAI/Anthropic/兼容网关/多模型切换，含端到端验证）",
+      "files_changed": 1,
+      "scope": "my-docs"
+    },
+    {
+      "sha": "0a150ff",
+      "at": "2026-07-17",
+      "author": "weikejia",
+      "message": "[fix] localize: 修复过期 xAI token + 网络不可达时 TUI 启动卡死",
+      "files_changed": 3,
+      "scope": "crates"
+    },
+    {
+      "sha": "474ca16",
+      "at": "2026-07-17",
+      "author": "weikejia",
+      "message": "[feat] localize: 本地优先裁剪 v1（Ollama 默认 + 去云依赖 + ACP 仅留 stdio）",
+      "files_changed": 20,
+      "scope": "crates"
+    },
+    {
+      "sha": "7daf56c",
+      "at": "2026-07-17",
+      "author": "weikejia",
+      "message": "裁切方案",
+      "files_changed": 1,
+      "scope": "my-docs"
+    },
+    {
+      "sha": "f938148",
+      "at": "2026-07-17",
+      "author": "weikejia",
+      "message": "[docs] add CLI 二开深度代码审计报告",
+      "files_changed": 2,
+      "scope": "my-docs"
+    },
+    {
+      "sha": "0da6296",
+      "at": "2026-07-16",
+      "author": "weikejia",
+      "message": "[feat] add README-WAKE.md and start-dev.sh",
+      "files_changed": 2,
+      "scope": "my-scripts"
+    }
+  ],
+  "total_commits": 15,
+  "span": {
+    "first_at": "2026-07-16",
+    "last_at": "2026-07-19"
+  },
+  "one_liner": "本地化裁切 + 架构文档体系化建设，辅以发布脚本与 dev 体验改进",
+  "theme_count": 4,
+  "theme_1": "文档体系建设（架构/配置/LLM指南/源码审计）",
+  "theme_1_commits": 8,
+  "theme_1_shas": [
+    "0368e73",
+    "42316f7",
+    "ee71d0a",
+    "977e49f",
+    "2838272",
+    "7daf56c",
+    "f938148",
+    "de6548c"
+  ],
+  "theme_1_summary": "以架构分层与数据流分析为核心，同步 upstramspec/配置全参数、LLM多模型接入指南，辅以代码库审计与裁切方案文档，形成完整的双开知识库",
+  "theme_2": "本地化裁切（去云依赖 + Ollama 本地优先）",
+  "theme_2_commits": 3,
+  "theme_2_shas": [
+    "474ca16",
+    "0a150ff",
+    "de6548c"
+  ],
+  "theme_2_summary": "将 LLM 默认后端切换为 Ollama 本地服务，剥离云 API 依赖、简化 ACP 通道为纯 stdio，同步修复 token 过期导致 TUI 卡死的阻塞问题；两次 upstream 合并归入此主题作为集成基线",
+  "theme_3": "构建与发布工具链（macOS arm64 打包 + 版本号管理）",
+  "theme_3_commits": 2,
+  "theme_3_shas": [
+    "a225e76",
+    "11c5020"
+  ],
+  "theme_3_summary": "建立 macOS arm64 release 发布目录体系（build-release.sh 构建 + install.sh 安装）并为版本号追加 -wkj 开发分支后缀以便区分",
+  "theme_4": "开发体验优化与基础设施",
+  "theme_4_commits": 2,
+  "theme_4_shas": [
+    "93b0f8e",
+    "0da6296"
+  ],
+  "theme_4_summary": "改进 start-dev.sh 在启动前交由 cargo 判断二进制新鲜度并显示版本信息，补充 README-WAKE.md 引导文档，降低本地开发门槛",
+  "previous_analyzed_at": "2026-07-22T18:37:24+0800"
+}

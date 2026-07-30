@@ -1,8 +1,8 @@
 {
   "schema_version": "9",
   "project_id": "019fa34f-d5f8-74b0-922d-55d81e33e5e9",
-  "scan_id": "019fa34f-d815-7893-835a-4dc03d91ae97",
-  "scanned_at": "2026-07-27T11:22:26Z",
+  "scan_id": "019fb0ad-c04b-7fc3-8d26-496e38c66948",
+  "scanned_at": "2026-07-30T01:40:04Z",
   "tech_stack": [
     {
       "name": "anyhow",

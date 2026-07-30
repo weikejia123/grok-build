@@ -1,9 +1,9 @@
 {
   "schema_version": "9",
   "project_id": "019fa34f-d5f8-74b0-922d-55d81e33e5e9",
-  "scan_id": "019fa34f-d815-7893-835a-4dc03d91ae97",
-  "scanned_at": "2026-07-27T11:22:26Z",
-  "duration_ms": 236,
+  "scan_id": "019fb0ad-c04b-7fc3-8d26-496e38c66948",
+  "scanned_at": "2026-07-30T01:40:04Z",
+  "duration_ms": 326,
   "is_git_repo": true,
   "git": {
     "root": "/Users/weikejia/CODE/my-agent-group/projects/coder-agent/grok-build",
@@ -31,14 +31,14 @@
         "repo": "grok-build"
       }
     ],
-    "head": "2327c53",
+    "head": "b7ac800",
     "path_prefix": "",
     "has_commit_hooks": false,
     "has_upstream": true,
     "is_detached_head": false,
-    "dirty_file_count": 1,
+    "dirty_file_count": 2,
     "has_untracked": true,
-    "ahead_count": 0,
+    "ahead_count": 1,
     "behind_count": 0,
     "latest_tag": null,
     "submodules": []
@@ -563,7 +563,7 @@
   ],
   "timeline": {
     "first_commit_at": "2026-07-16T06:46:02+01:00",
-    "last_commit_at": "2026-07-24T13:34:09+08:00",
+    "last_commit_at": "2026-07-27T19:22:26+08:00",
     "shallow_clone": false,
     "last_file_modified_at": "2026-07-24T05:34:32Z",
     "last_core_file_modified_at": "2026-07-23T23:31:39Z",

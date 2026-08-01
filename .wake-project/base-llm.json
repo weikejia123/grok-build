@@ -1,0 +1,81 @@
+{
+  "identity": {
+    "type": "cli_tool",
+    "confidence": 0.95,
+    "rationale": "README 明确描述为 terminal-based AI coding agent，提供 CLI 二进制 grok 并支持 TUI 交互模式、headless 脚本模式及编辑器嵌入（ACP协议）",
+    "one_liner": "SpaceXAI 的终端 AI 编码代理 — 全屏 TUI，能理解代码库、编辑文件、执行 shell 命令并管理长任务",
+    "purpose_summary": "Grok Build (grok) 是 SpaceXAI 开发的 Rust 终端 AI 编码代理。它以全屏 TUI 运行，支持代码库理解、文件编辑、shell 命令执行、网页搜索和长期任务管理。支持交互式、headless（脚本/CI）和通过 Agent Client Protocol (ACP) 嵌入编辑器三种运行模式。可通过 curl -fsSL https://x.ai/cli/install.sh | bash 安装，主要命令为 grok。"
+  },
+  "domains": [
+    "AI辅助编码",
+    "终端用户界面",
+    "开发者工具",
+    "命令行工具"
+  ],
+  "tech_summary": {
+    "natural": "Rust 实现的终端 AI 编码代理，使用 Tokio 异步运行时驱动。TUI 层基于 Ratatui 框架（含 crossterm 后端），提供全屏终端界面。通过 reqwest HTTP 客户端与 xAI API 通信（支持 ACP 协议），使用 Axum 提供 MCP 服务器能力。代码库分析依赖 tree-sitter 多语言解析器和基于 gix 的 Git 集成。CLI 参数解析使用 Clap，配置管理使用 TOML 序列化。",
+    "primary_language": "Rust",
+    "runtime": "Tokio (async Rust)",
+    "framework": "Ratatui",
+    "key_dependencies": [
+      "ratatui",
+      "tokio",
+      "axum",
+      "clap",
+      "reqwest"
+    ]
+  },
+  "critical_paths": [
+    {
+      "path": "crates/codegen/xai-grok-pager-bin",
+      "role": "composition-root，构建最终 xai-grok-pager 二进制文件的入口 crate",
+      "stability": "high"
+    },
+    {
+      "path": "crates/codegen/xai-grok-pager",
+      "role": "TUI 核心实现（滚动缓冲区、提示行、模态框、渲染），是整个交互界面的主力 crate",
+      "stability": "high"
+    },
+    {
+      "path": "crates/codegen/xai-grok-shell",
+      "role": "代理运行时 + leader/stdio/headless 入口点，控制代理生命周期和执行模式",
+      "stability": "high"
+    },
+    {
+      "path": "crates/codegen/xai-grok-tools",
+      "role": "工具实现（终端操作、文件编辑、搜索等），是代理执行具体操作的能力层",
+      "stability": "high"
+    },
+    {
+      "path": "crates/codegen/xai-grok-workspace",
+      "role": "主机文件系统、版本控制、命令执行和检查点管理，是代理与工作空间交互的抽象层",
+      "stability": "high"
+    },
+    {
+      "path": "crates/codegen/xai-grok-config",
+      "role": "配置管理（TOML 解析、认证令牌、路径解析），是 CLI 启动和运行的基础依赖",
+      "stability": "high"
+    },
+    {
+      "path": "crates/codegen/xai-grok-mcp",
+      "role": "MCP 服务器集成（基于 Axum），提供模型上下文协议支持以扩展代理能力",
+      "stability": "moderate"
+    },
+    {
+      "path": "crates/codegen/xai-grok-http",
+      "role": "HTTP 客户端层（封装 reqwest 和认证），负责与 xAI API 的所有通信",
+      "stability": "high"
+    },
+    {
+      "path": "crates/codegen/xai-grok-agent",
+      "role": "代理生命周期管理（提示构建、工具调用调度、会话状态），协调代理的核心编排逻辑",
+      "stability": "high"
+    }
+  ],
+  "_meta": {
+    "schema_version": 1,
+    "analyzed_at": "2026-07-31T02:49:25+0800",
+    "project_id": "019fa34f-d5f8-74b0-922d-55d81e33e5e9",
+    "scan_id": "019fb0ad-c04b-7fc3-8d26-496e38c66948"
+  }
+}

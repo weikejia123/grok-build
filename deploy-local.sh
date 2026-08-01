@@ -167,8 +167,8 @@ do_install() {
   mkdir -p "$target_dir"
 
   if [ ! -w "$target_dir" ]; then
-    sudo cp -f "$src" "$target"
-    sudo chmod +x "$target"
+    sudo -n cp -f "$src" "$target" 2>/dev/null || sudo cp -f "$src" "$target"
+    sudo -n chmod +x "$target" 2>/dev/null || sudo chmod +x "$target"
     log_info "已安装（sudo）: $target"
   else
     cp -f "$src" "$target"

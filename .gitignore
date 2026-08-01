@@ -1,3 +1,8 @@
 /target
 **/*.rs.bk
 .DS_Store
+
+# deploy-local.sh 生成的本地部署状态快照（构建 SHA/分支/时间戳），不入库
+.deploy-marker
+# 本地构建产物（release tar.gz 二进制包），不入库
+dist/
